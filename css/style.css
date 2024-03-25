@@ -1,0 +1,173 @@
+/* Animating the logo */
+/* Starts with 25 px and grows by 112.5px with each percentage */
+@keyframes grow {
+    0% {
+        width: 25px;
+        opacity: 0;
+    }
+    25% {
+        width:  137.5px;
+        opacity: 0.25;
+    }
+    50% {
+        widht: 250px;
+        opacity: 0.50;
+    }
+    75% {
+        width: 362.5px;
+        opacity: 0.75;
+    }
+    100% {
+        width: 475 px;
+        opacity: 1;
+    }
+  }
+/* applies the animation to the logo on the page */
+#logo {
+    animation: grow 5s;
+}
+/* Edit the body element to use the Poppins font (using Google fonts) with serif as a backup.  It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1. */
+body {
+    font-family: "Poppins", sans-serif;
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+/* Edit the css for the header tag (all instances) to use flex to match the example. */
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Edit the css for the nav_links class to use flex to match our example. Do not modify the list items or the links - modify the nav_links class to use flex.  */
+/* Default mobile/tablet view displays the nav links to be centered and listed as one column/three rows with the logo image in the center */
+.nav_links {
+    display: flex;
+    flex-direction: column;
+    color: #0000EE;
+}
+/* Style the links so that they have the same color even after they have been visited. */
+/* Uses a and then a:visited to make sure both link colors are the same whether they were clicked on or not */
+a,
+a:visited {
+    color: #0000EE;
+}
+/* Identify the proper selector to style ONLY those header elements that are direct children of a card class.  */
+.card > header {
+    background: #288088;
+    border: 2px solid #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+/* Edit the css for the card class to match our example. Achieve this by using a flex-property to specify an initial “size” of 450px.  You need to think about this from a “flex” perspective and realize that flex-direction will affect the size of the elements.  You can see that in the mobile view they all have the same width. 
+
+Edit the css for the pricing class to match our example. You should use flex and the cards should be centered both horizontally and vertically. */
+
+.card {
+    flex-basis: 450px;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.pricing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+/* Style the images in the gallery class. These elements will have a solid 10px border with a color of #50C7C7, 10px margin on all four sides and a width of 300px.   */
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+/* Edit the css for the gallery class to use flex to match the example. */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* media query for screen-size being greater than 900px */
+@media (min-width: 900px) {
+    /* Change header so that it matches the 1200 px view */
+    /* Changes the navbar so that the logo is aligned to the left and navlinks are aligned to the right horizontally  */
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    /* Change nav_links so that it matches the 1200 px view by making it shift to the very right and horizontal instead of vertical */
+    .nav_links {
+        display: flex;
+        flex-direction: row;
+    }
+    /* Changes the card property to match the 1200 px view - all in view */
+    .card {
+        flex-basis: 275px;
+    }
+    /* Makes the navbar stick to the top when scrolling and makes sure the content is below and not behind it */
+    body > header:first-of-type {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        z-index: 1;
+    }
+}
+/* The logo should appear but not be animated if prefers-reduced-motion is selected in the accessibility preferences.  */
+@media (prefers-reduced-motion: reduce) {
+    /* Removes the growth animation for users with reduced motion on*/
+    #logo {
+        animation: none;
+        opacity: 1;
+    }
+}
+@media print {
+    /* Changes the typeface and removes the concrete background image */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: none;
+    }
+    /* Centers the logo to the page */
+    #logo {
+        margin:auto
+    }
+    /* Matches the navlinks to be under the logo and spaces out but centered from the screenshot */
+    .nav_links {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-around;
+    }
+    nav {
+        width: 100%;
+    }
+    /* Aligns to the bottom of the page */
+    .pricing {
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: flex-end;
+    }
+    /* Sets the border and initial length of the box to a solid blue border of 325px */
+    .card {
+        border: solid 2px #45ADDD;
+        flex-basis: 325px;
+    }
+    /* Hides the gallery in print mode */
+    #gallery,
+    .gallery {
+        display: none;
+    }
+    /* Shows a thumbs up emoji as 1f44D is the unicode */
+    .card li:nth-child(2)::after {
+        content: "\1f44D";
+    }
+
+}
